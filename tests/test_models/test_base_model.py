@@ -66,6 +66,39 @@ class TestBaseModel(unittest.TestCase):
             actual_output = stdout.getvalue()
         self.assertEqual(actual_output, expected_output)
 
+    def test_arguments(self):
+        """Method to test the key word argument"""
+
+        obj = BaseModel()
+        obj.name = 'Brian'
+        obj.age = 29
+        obj.school = 'Alx-Africa'
+        obj.save()
+        obj_dict = obj.to_dict()
+        new_obj = BaseModel(**obj_dict)
+
+        self.assertFalse(obj is new_obj)
+        expected_output = str(new_obj.to_dict())
+        with mock.patch('sys.stdout', new=StringIO()) as stdout:
+            print(new_obj.to_dict(), end='')
+            actual_output = stdout.getvalue()
+        self.assertEqual(actual_output, expected_output)
+
+        with self.assertRaises(TypeError):
+            new_obj = BaseModel(
+                    '56d43177-cc5f-4d6c-a0c1-e167f8c27337',
+                    '2017-09-28T21:03:54.052298',
+                    '2017-09-28T21:03:54.052302'
+                    )
+            new_obj.id
+
+        with self.assertRaises(AttributeError):
+            new_obj = BaseModel(
+                    d=10, created='2017-09-28T21:03:54.052302',
+                    updated='2017-09-28T21:03:54.052302'
+                    )
+            new_obj.d
+
     def test__str__(self):
         """Method to test the string representation of an object"""
 
