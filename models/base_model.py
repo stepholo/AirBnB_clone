@@ -20,12 +20,23 @@ class BaseModel:
             save: updated the attribute updated_at with current datetime
             to_dict: method to retun keys/values of __dict__ of the instance
     """
-    def __init__(self, created_at=None, updated_at=None, id=None):
+    def __init__(self, *args, **kwargs):
         """class construct"""
 
-        self.id = str(uuid.uuid4()) if id is None else id
-        self.created_at = datetime.now() if created_at is None else created_at
-        self.updated_at = datetime.now() if updated_at is None else updated_at
+        if args:
+            raise TypeError('Positional arguments is not accepted(*args)')
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                elif key == 'id':
+                    self.id = value
+                elif key == '__class__':
+                    pass
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """Returns string representation of an instance in
