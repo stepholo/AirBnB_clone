@@ -97,7 +97,14 @@ class TestBaseModel(unittest.TestCase):
                     d=10, created='2017-09-28T21:03:54.052302',
                     updated='2017-09-28T21:03:54.052302'
                     )
-            new_obj.d
+            print(new_obj)
+
+        with self.assertRaises(KeyError):
+            new_obj = BaseModel(
+                    d=10, created='2017-09-28T21:03:54.052302',
+                    updated='2017-09-28T21:03:54.052302'
+                    )
+            new_obj.to_dict()
 
     def test__str__(self):
         """Method to test the string representation of an object"""
