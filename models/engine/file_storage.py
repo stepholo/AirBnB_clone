@@ -43,8 +43,8 @@ class FileStorage:
         """Serializes __objects to the JSON file"""
 
         with open(FileStorage.__file_path, 'w') as json_file:
-            obj_dict = {k: obj.to_dict() for k, obj in FileStorage.__objects.items()}
-            json.dump(obj_dict, json_file)
+            o = {k: obj.to_dict() for k, obj in FileStorage.__objects.items()}
+            json.dump(o, json_file)
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
@@ -53,9 +53,15 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as json_file:
                 data = json.load(json_file)
                 from models.base_model import BaseModel
+                from models.user import User
                 for key, value in data.items():
                     cls_name, obj_id = key.split('.')
-                    cls = BaseModel if cls_name == 'BaseModel' else None
+                    if cls_name == 'BaseModel':
+                        cls = BaseModel
+                    elif cls_name == 'User':
+                        cls = User
+                    else:
+                        cls = None
                     if cls:
                         FileStorage.__objects[key] = cls(**value)
         else:
