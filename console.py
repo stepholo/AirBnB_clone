@@ -4,6 +4,7 @@ This is the entry point of the command interpreter
 """
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
@@ -17,14 +18,13 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-
-
     def do_EOF(self, arg):
         """
         Exit the program
         """
         print("")
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
