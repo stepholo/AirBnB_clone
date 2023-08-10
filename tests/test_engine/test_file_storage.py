@@ -4,9 +4,10 @@
 
 import unittest
 import os
-from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.user import User
 
 
 class TestFileStorage_instantiation(unittest.TestCase):
@@ -91,12 +92,15 @@ class TestFileStorage_methods(unittest.TestCase):
 
         os.remove('file.json')
         bm = BaseModel()
+        us = User()
         storage.new(bm)
+        storage.new(us)
         storage.save()
         text = ''
         with open('file.json', 'r') as fd:
             text = fd.read()
             self.assertIn("BaseModel." + bm.id, text)
+            self.assertIn("User." + us.id, text)
 
         with self.assertRaises(TypeError):
             storage.save(None)
@@ -106,11 +110,13 @@ class TestFileStorage_methods(unittest.TestCase):
         if os.path.exists('file.json'):
             os.remove('file.json')
         bm = BaseModel()
+        us = User()
         storage.save()
         storage.reload()
         obj = FileStorage._FileStorage__objects
         self.assertTrue(isinstance(obj, dict))
         self.assertIn("BaseModel." + bm.id, obj)
+        self.assertIn("User." + us.id, obj)
 
         with self.assertRaises(TypeError):
             storage.reload(None)
