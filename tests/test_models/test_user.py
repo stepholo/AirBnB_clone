@@ -53,9 +53,9 @@ class TestUser(unittest.TestCase):
             actual_output = stdout.getvalue()
         self.assertEqual(actual_output, expected_output)
 
+
 class TestUser_save(unittest.TestCase):
     """method to test save method of the class"""
-
 
     @classmethod
     def setUp(self):
@@ -87,6 +87,7 @@ class TestUser_save(unittest.TestCase):
         usid = "User." + us.id
         with open("file.json", 'r') as f:
             self.assertIn(usid, f.read())
+
 
 class TestSave_to_dict(unittest.TestCase):
     """Class to test the dictionary representation of User class"""
