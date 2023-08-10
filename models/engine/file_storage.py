@@ -54,12 +54,27 @@ class FileStorage:
                 data = json.load(json_file)
                 from models.base_model import BaseModel
                 from models.user import User
+                from models.state import State
+                from models.city import City
+                from models.amenity import Amenity
+                from modles.place import Place
+                from models.review import Review
                 for key, value in data.items():
                     cls_name, obj_id = key.split('.')
                     if cls_name == 'BaseModel':
                         cls = BaseModel
                     elif cls_name == 'User':
                         cls = User
+                    elif cls_name == 'State':
+                        cls = State
+                    elif cls_name == 'City':
+                        cls = City
+                    elif cls_name == 'Amenity':
+                        cls = Amenity
+                    elif cls_name = 'Place':
+                        cls = Place
+                    elif cls_name = 'Review':
+                        cls = Review
                     else:
                         cls = None
                     if cls:
