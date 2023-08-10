@@ -71,9 +71,9 @@ class FileStorage:
                         cls = City
                     elif cls_name == 'Amenity':
                         cls = Amenity
-                    elif cls_name = 'Place':
+                    elif cls_name == 'Place':
                         cls = Place
-                    elif cls_name = 'Review':
+                    elif cls_name == 'Review':
                         cls = Review
                     else:
                         cls = None
