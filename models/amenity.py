@@ -2,7 +2,7 @@
 """Module to define class Amenity"""
 
 
-from model.base_models import BaseModel
+from models.base_models import BaseModel
 
 
 class Amenity(BaseModel):
