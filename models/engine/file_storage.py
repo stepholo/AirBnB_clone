@@ -57,7 +57,7 @@ class FileStorage:
                 from models.state import State
                 from models.city import City
                 from models.amenity import Amenity
-                from modles.place import Place
+                from models.place import Place
                 from models.review import Review
                 for key, value in data.items():
                     cls_name, obj_id = key.split('.')
