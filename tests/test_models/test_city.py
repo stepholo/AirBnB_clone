@@ -60,6 +60,7 @@ class TestCity_instantiation(unittest.TestCase):
             actual_output = stdout.getvalue()
         self.assertEqual(actual_output, expected_output)
 
+
 class TestCity_to_dict(unittest.TestCase):
     """class to test dictionary representation of class City"""
 
@@ -102,6 +103,7 @@ class TestCity_to_dict(unittest.TestCase):
         c1 = City()
         with self.assertRaises(TypeError):
             c1.to_dict(None)
+
 
 class TestCity_save(unittest.TestCase):
     """class to test the save method for City class"""

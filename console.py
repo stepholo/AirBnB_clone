@@ -3,7 +3,14 @@
 This is the entry point of the command interpreter
 """
 import cmd
+import os
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 
@@ -13,6 +20,13 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Do nothing upon recieving an empty line."""
         pass
+
+    def do_clear(self, line):
+        """Clears the screen"""
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            os.system('clear')
 
     def do_quit(self, arg):
         """
@@ -52,7 +66,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in [
+                "BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Place",
+                "Review"
+                ]:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -74,7 +96,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in [
+                "BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Place",
+                "Review"
+                ]:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -98,7 +128,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args:
             print([str(obj) for obj in all_objs.values()])
-        elif args[0] in ["BaseModel"]:
+        elif args[0] in [
+                "BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Place",
+                "Review"
+                ]:
             print([str(obj) for key, obj in all_objs.items()
                    if args[0] in key])
         else:
@@ -113,7 +151,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in ["BaseModel"]:
+        elif args[0] not in [
+                "BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Place",
+                "Review"
+                ]:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
