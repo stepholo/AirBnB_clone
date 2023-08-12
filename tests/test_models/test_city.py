@@ -22,13 +22,16 @@ class TestCity_instantiation(unittest.TestCase):
         self.assertTrue(isinstance(City(), City))
         self.assertIn(City(), storage.all().values())
 
+    def test_city_instances(self):
+        """Method to test the instances types"""
         self.assertTrue(isinstance(City().id, str))
         self.assertTrue(isinstance(City().created_at, datetime))
         self.assertTrue(isinstance(City().updated_at, datetime))
-
         self.assertEqual(str, type(City.state_id))
         self.assertEqual(str, type(City.name))
 
+    def test_instantiate_with_arg(self):
+        """Method to test instantiation with argument"""
         with self.assertRaises(TypeError):
             City(None)
 
