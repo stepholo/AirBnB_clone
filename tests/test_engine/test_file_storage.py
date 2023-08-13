@@ -14,19 +14,24 @@ class TestFileStorage_instantiation(unittest.TestCase):
     """Unittests for testing FileStorage class instantiation"""
 
     def test_FileStrorage_instantiation_no_args(self):
+        """Method to test FileStorage instantiation"""
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_FileStorage_instatiation_with_arg(self):
+        """Method to test instatiation with argument"""
         with self.assertRaises(TypeError):
             FileStorage(None)
 
     def test_FileStorage_file_path_is_private_str(self):
+        """Method to test private class attribute"""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
     def test_FileStorage_objects_is_private_dict(self):
+        """Method to test if FileStorage instance is private"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
     def test_storage_initializes(self):
+        """Method to test storage initialization"""
         self.assertEqual(type(storage), FileStorage)
 
 
@@ -35,6 +40,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """Method to set up environment before test"""
         try:
             os.rename('file.json', 'tmp')
         except IOError:
@@ -42,6 +48,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
+        """Method to destroy the environment set after test completion"""
         try:
             os.remove('file.json')
         except IOError:
