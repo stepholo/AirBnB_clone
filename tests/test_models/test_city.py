@@ -103,6 +103,7 @@ class TestCity_to_dict(unittest.TestCase):
         self.assertTrue(c1.to_dict() != c1.__dict__)
 
     def test_to_dict_with_arg(self):
+        """method to test to_dict with arg"""
         c1 = City()
         with self.assertRaises(TypeError):
             c1.to_dict(None)
@@ -113,11 +114,13 @@ class TestCity_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """method to set up test"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """method to tear down test"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
@@ -137,6 +140,7 @@ class TestCity_save(unittest.TestCase):
             c1.save(None)
 
     def test_save_updates_file(self):
+        """method to test save update files"""
         c1 = City()
         c1.save()
         self.assertTrue(os.path.exists('file.json'))

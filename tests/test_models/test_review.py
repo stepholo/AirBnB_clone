@@ -105,6 +105,7 @@ class TestReview_to_dict(unittest.TestCase):
         self.assertTrue(rv.to_dict() != rv.__dict__)
 
     def test_to_dict_with_arg(self):
+        """method to test to_dict method"""
         rv = Review()
         with self.assertRaises(TypeError):
             rv.to_dict(None)
@@ -115,11 +116,13 @@ class TestReview_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """set up class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """tear class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
@@ -139,6 +142,7 @@ class TestReview_save(unittest.TestCase):
             rv.save(None)
 
     def test_save_updates_file(self):
+        """method to test save update file"""
         rv = Review()
         rv.save()
         self.assertTrue(os.path.exists('file.json'))
