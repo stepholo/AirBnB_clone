@@ -22,13 +22,16 @@ class TestCity_instantiation(unittest.TestCase):
         self.assertTrue(isinstance(City(), City))
         self.assertIn(City(), storage.all().values())
 
+    def test_city_instances(self):
+        """Method to test the instances types"""
         self.assertTrue(isinstance(City().id, str))
         self.assertTrue(isinstance(City().created_at, datetime))
         self.assertTrue(isinstance(City().updated_at, datetime))
-
         self.assertEqual(str, type(City.state_id))
         self.assertEqual(str, type(City.name))
 
+    def test_instantiate_with_arg(self):
+        """Method to test instantiation with argument"""
         with self.assertRaises(TypeError):
             City(None)
 
@@ -100,6 +103,7 @@ class TestCity_to_dict(unittest.TestCase):
         self.assertTrue(c1.to_dict() != c1.__dict__)
 
     def test_to_dict_with_arg(self):
+        """method to test to_dict with arg"""
         c1 = City()
         with self.assertRaises(TypeError):
             c1.to_dict(None)
@@ -110,11 +114,13 @@ class TestCity_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """method to set up test"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """method to tear down test"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
@@ -134,6 +140,7 @@ class TestCity_save(unittest.TestCase):
             c1.save(None)
 
     def test_save_updates_file(self):
+        """method to test save update files"""
         c1 = City()
         c1.save()
         self.assertTrue(os.path.exists('file.json'))

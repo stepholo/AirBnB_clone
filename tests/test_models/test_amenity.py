@@ -95,6 +95,7 @@ class TestAmenity_to_dict(unittest.TestCase):
         self.assertTrue(am.to_dict() != am.__dict__)
 
     def test_to_dict_with_arg(self):
+        """Method to test to_dict with argument"""
         am = Amenity()
         with self.assertRaises(TypeError):
             am.to_dict(None)
@@ -105,11 +106,13 @@ class TestAmenity_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """Method to set up environment"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """method to set environment to default"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
@@ -129,6 +132,7 @@ class TestAmenity_save(unittest.TestCase):
             am.save(None)
 
     def test_save_updates_file(self):
+        """method to test save updates files"""
         am = Amenity()
         am.save()
         self.assertTrue(os.path.exists('file.json'))

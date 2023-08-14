@@ -136,6 +136,7 @@ class TestPlace_to_dict(unittest.TestCase):
         self.assertTrue(pl.to_dict() != pl.__dict__)
 
     def test_to_dict_with_arg(self):
+        """method to test to_dict class method """
         pl = Place()
         with self.assertRaises(TypeError):
             pl.to_dict(None)
@@ -146,11 +147,13 @@ class TestPlace_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """set up class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """tear down class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
@@ -170,6 +173,7 @@ class TestPlace_save(unittest.TestCase):
             pl.save(None)
 
     def test_save_updates_file(self):
+        """method to test save update files"""
         pl = Place()
         pl.save()
         self.assertTrue(os.path.exists('file.json'))
