@@ -33,11 +33,13 @@ class TestUser(unittest.TestCase):
             User(None)
 
     def test_user_id(self):
+        """method to test user id"""
         us1 = User()
         us2 = User()
         self.assertTrue(us1.id != us2.id)
 
     def test_user_time(self):
+        """method to test user time"""
         us1 = User()
         time.sleep(0.05)
         us2 = User()
@@ -45,6 +47,7 @@ class TestUser(unittest.TestCase):
         self.assertLess(us1.updated_at, us2.updated_at)
 
     def test_user_string(self):
+        """method to test user string"""
         us1 = User()
         us1.email = 'oloobrian89@gmail.com'
         expected_output = us1.__str__()
@@ -59,15 +62,18 @@ class TestUser_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """set up class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     @classmethod
     def tearDown(self):
+        """tear down class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
     def test_save_one(self):
+        """test save with one"""
         us = User()
         time.sleep(0.05)
         first_update = us.updated_at
@@ -75,11 +81,13 @@ class TestUser_save(unittest.TestCase):
         self.assertLess(first_update, us.updated_at)
 
     def test_save_with_arg(self):
+        """test save with argument"""
         us = User()
         with self.assertRaises(TypeError):
             us.save(None)
 
     def test_save_updates_file(self):
+        """test save updates files"""
         us = User()
         us.save()
         self.assertTrue(os.path.exists('file.json'))
@@ -93,9 +101,11 @@ class TestSave_to_dict(unittest.TestCase):
     """Class to test the dictionary representation of User class"""
 
     def test_to_dict_type(self):
+        """method to test to_dict type"""
         self.assertTrue(isinstance(User().to_dict(), dict))
 
     def test_to_dict_contains_correct_keys(self):
+        """method to test dict contains keys"""
         us = User()
         self.assertIn('id', us.to_dict())
         self.assertIn('created_at', us.to_dict())
@@ -103,6 +113,7 @@ class TestSave_to_dict(unittest.TestCase):
         self.assertIn("__class__", us.to_dict())
 
     def test_to_dict_contains_added_attribute(self):
+        """method to test to_dict contains added attributes"""
         us = User()
         us.middle_name = 'Oloo'
         us.age = 29
@@ -110,6 +121,7 @@ class TestSave_to_dict(unittest.TestCase):
         self.assertIn('age', us.to_dict())
 
     def test_to_dict_output(self):
+        """method to test to_dict output"""
         us = User()
         expected = str(us.to_dict())
         with mock.patch('sys.stdout', new=StringIO()) as stdout:
@@ -118,10 +130,12 @@ class TestSave_to_dict(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_to_dict_dunder_dict(self):
+        """method to test to_dict dunder dict"""
         us = User()
         self.assertNotEqual(us.to_dict(), us.__dict__)
 
     def test_to_dict_with_arg(self):
+        """method to test to_dict with argument"""
         us = User()
         with self.assertRaises(TypeError):
             us.to_dict(None)

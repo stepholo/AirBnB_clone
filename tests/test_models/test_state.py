@@ -95,6 +95,7 @@ class TestState_to_dict(unittest.TestCase):
         self.assertTrue(st.to_dict() != st.__dict__)
 
     def test_to_dict_with_arg(self):
+        """test to dict with argument"""
         st = State()
         with self.assertRaises(TypeError):
             st.to_dict(None)
@@ -105,6 +106,7 @@ class TestState_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """set up class"""
         if os.path.exists('file.json'):
             os.remove('file.json')
 
