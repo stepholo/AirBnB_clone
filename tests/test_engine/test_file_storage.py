@@ -34,13 +34,25 @@ class TestFileStorage_instantiation(unittest.TestCase):
         """Method to test storage initialization"""
         self.assertEqual(type(storage), FileStorage)
 
+    def test_private_attribute_file__objects(self):
+        """method to test setting file__objects to none"""
+        fs = FileStorage()
+        fs._FileStorage__file_path = None
+        self.assertEqual(type(None), type(fs._FileStorage__file_path))
+
+    def test_private_attribute__objects(self):
+        """method to test __object attribute"""
+        fs = FileStorage()
+        fs._FileStorage__objects = []
+        self.assertEqual(list, type(fs._FileStorage__objects))
+
 
 class TestFileStorage_methods(unittest.TestCase):
     """Class to test the methods of FileStorage class"""
 
     @classmethod
     def setUp(self):
-        """Method to set up environment before test"""
+        """set up class"""
         try:
             os.rename('file.json', 'tmp')
         except IOError:
@@ -48,7 +60,7 @@ class TestFileStorage_methods(unittest.TestCase):
 
     @classmethod
     def tearDown(self):
-        """Method to destroy the environment set after test completion"""
+        """tear down class"""
         try:
             os.remove('file.json')
         except IOError:
@@ -63,6 +75,15 @@ class TestFileStorage_methods(unittest.TestCase):
         """method to test the all method"""
         self.assertEqual(dict, type(storage.all()))
 
+    def test_all_type_return(self):
+        """method to test whether all returns empty dict"""
+        fs = FileStorage()
+        dic = fs.all()
+        self.assertEqual(dict, type(dic))
+        self.assertTrue(len(dic) < 1)
+
+    def test_all_with_arg(self):
+        """method to test all method with argument"""
         with self.assertRaises(TypeError):
             storage.all(None)
 
@@ -73,11 +94,23 @@ class TestFileStorage_methods(unittest.TestCase):
         self.assertIn("BaseModel." + obj.id, storage.all().keys())
         self.assertIn(obj, storage.all().values())
 
-        with self.assertRaises(TypeError):
-            storage.new(BaseModel(), 'a')
+        def test_new_invalid_argument(self):
+            """method to test new() with invalid argument"""
+            with self.assertRaises(TypeError):
+                storage.new(BaseModel(), 'a')
 
-        with self.assertRaises(AttributeError):
-            storage.new(None)
+        def test_new_with_none_argument(self):
+            """method to test new() method with None argument"""
+            with self.assertRaises(AttributeError):
+                storage.new(None)
+
+        def test_new_with_empty_argument(self):
+            """method to test new with no argument"""
+            fs = FileStorage()
+            with self.assertRaises(AttributeError):
+                sf = fs.new(fs)
+            with self.assertRaises(TypeError):
+                sf = fs.new()
 
     def test_save(self):
         """method to test if serializationis done properly"""
