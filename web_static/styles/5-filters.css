@@ -1,57 +1,62 @@
-div.container {
-	width: 1000px;
-	margin: 30px auto;
-	text-align: center
-}
+/*
+ * == Filters Style ==
+ */
 
-section.filters {
-	background-color: white;
+/* Filters Style */
+.filters {
+	background-color: #FFFFFF;
 	height: 70px;
 	width: 100%;
 	border: 1px solid #DDDDDD;
-	border-radius: 4px
+	border-radius: 4px;
 }
-
-section.filters button {
-	font-size: 18px;
+/* Search button style */
+.filters button {
 	background-color: #FF5A5F;
+	border-radius: 4px;
+	border: none;
 	color: #FFFFFF;
+	float: right;
 	height: 48px;
 	width: 20%;
-	border: 0;
-	border-radius: 4px;
-	float: right;
-	margin: 11px 30px;
+	font-size: 18px;
+	margin: 12px 30px;
 }
-
-section.filters button:hover {
-	opacity: .9;
+/*change opacity to 90% when mouse is on the button*/
+.filters button:hover {
+	background-color: rgba(255, 90, 95, .9);
 }
-/* location and amenities part of search bar */
+/*locations and amenities*/
 .locations,
 .amenities {
+	display: inline-block;
 	height: 100%;
 	width: 25%;
-	float: left;
 }
+/*locations*/
 .locations {
 	border-right: 1px solid #DDDDDD;
 }
-.locations h3,
-.amenities h3 {
-	font-weight: 600;
-	font-size: 16px;
-	margin-top: 20px;
-	margin-bottom: 0px;
-	text-align: left;
-	margin-left: 30px;
+
+/* places header */
+.filters h3,
+.filters h4 {
+	-webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  	box-sizing: border-box;
+		margin: 0;
 }
-.locations h4,
-.amenities h4 {
-	font-weight: 400;
+
+/* Header 3 style */
+.filters h3 {
+	font-size: 1.17em;
+	font-weight: 600;
+	height: 50%;
+	padding: 15.5px 0 0 30px;
+}
+.filters h4 {
 	font-size: 14px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	text-align: left;
-	margin-left: 30px;
+	font-weight: 400;
+	height: 50%;
+	padding: 5px 0 12px 30px;
 }
