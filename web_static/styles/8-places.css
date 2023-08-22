@@ -71,6 +71,13 @@
 	margin-right: 10px;
 	background-position-x: center;
 }
+.number_rooms {
+	background: url('../images/bedroom_icon.png') no-repeat;
+	margin-top: 6px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-position-x: center;
+}
 .number_bathrooms {
 	background: url('../images/bathroom_icon.png') no-repeat;
 	margin-top: 6px;
